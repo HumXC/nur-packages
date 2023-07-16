@@ -23,7 +23,7 @@ stdenvNoCC.mkDerivation rec {
     homepage = "https://web.vip.miui.com/page/info/mio/mio/detail?postId=33935854";
     description = "Free fonts developed by XiaoMi Corporation.";
     license = licenses.ofl;
-    maintainers = [ maintainers.xiaomi ];
+    maintainers = with maintainers; [ HumXC ];
     platforms = platforms.all;
   };
 }
