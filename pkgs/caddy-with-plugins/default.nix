@@ -1,5 +1,5 @@
 # From: https://github.com/NixOS/nixpkgs/issues/89268#issuecomment-636529668
-{ stdenv, lib, buildGoModule, plugins ? [ ], ... }:
+{ stdenv, lib, buildGoModule, plugins ? [ ], vendorHash, ... }:
 with lib;
 let
   imports = lib.concatStrings (map (pkg: "\n\t_ \"${pkg}\"") plugins);
