@@ -10,7 +10,7 @@
 , colorVariants ? [ ] # default: all
 , sizeVariants ? [ ] # default: standard
 , tweaks ? [ ]
-, round ? [ ]
+, roundVariants ? [ ]
 }:
 
 let
@@ -25,7 +25,7 @@ lib.checkListOfEnum "${pname}: theme variants" [ "default" "purple" "pink" "red"
   lib.checkListOfEnum "${pname}: tweaks" [ "compact" "black" "primary" "macos" "submenu" "nord" "dracula" "dock" ]
   tweaks
   lib.checkListOfEnum "${pname}: round" [ "3px" "4px" "5px" "6px" "7px" "8px" "9px" "10px" "11px" "12px" "13px" "14px" "15px" ]
-  round
+  roundVariants
 
   stdenvNoCC.mkDerivation
   (finalAttrs: {
@@ -63,8 +63,8 @@ lib.checkListOfEnum "${pname}: theme variants" [ "default" "purple" "pink" "red"
         ${lib.optionalString (themeVariants != []) "--theme " + builtins.toString themeVariants} \
         ${lib.optionalString (colorVariants != []) "--color " + builtins.toString colorVariants} \
         ${lib.optionalString (sizeVariants != []) "--size " + builtins.toString sizeVariants} \
+        ${lib.optionalString (roundVariants != []) "--round " + builtins.toString roundVariants} \
         ${lib.optionalString (tweaks != []) "--tweaks " + builtins.toString tweaks} \
-        ${lib.optionalString (round != []) "--round " + builtins.toString round} \
         --icon nixos \
         --dest $out/share/themes
 
